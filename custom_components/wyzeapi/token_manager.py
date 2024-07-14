@@ -8,7 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from wyzeapy.exceptions import AccessTokenError, LoginError
 from wyzeapy.wyze_auth_lib import Token
 
-from .const import DOMAIN, ACCESS_TOKEN, REFRESH_TOKEN, REFRESH_TIME
+from .const import DOMAIN, ACCESS_TOKEN, REFRESH_TOKEN, REFRESH_TIME, API_KEY, KEY_ID
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -31,6 +31,8 @@ class TokenManager:
                     data={
                         CONF_USERNAME: entry.data.get(CONF_USERNAME),
                         CONF_PASSWORD: entry.data.get(CONF_PASSWORD),
+                        KEY_ID: entry.data.get(KEY_ID),
+                        API_KEY: entry.data.get(API_KEY),
                         ACCESS_TOKEN: token.access_token,
                         REFRESH_TOKEN: token.refresh_token,
                         REFRESH_TIME: str(token.refresh_time),
